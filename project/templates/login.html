@@ -1,0 +1,22 @@
+{% extends "login_layout.html" %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block main %}
+    <form action="/login" method="post">
+        <h1>Vici: Conquer Your Life</h1>
+        <div class="container">
+            <label for="username"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="username" id="username" required>
+
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" id="password" required>
+                
+            <button type="submit" name="button" id="submit_button">Login</button>
+            <A HREF="/register">I don't have an account yet</A>
+
+        </div>
+    </form>
+{% endblock %}

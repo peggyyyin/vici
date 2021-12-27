@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Dashboard
+{% endblock %}
+
+{% block main %}
+    <br></br>
+    <h1>Dashboard</h1>
+    <br></br>
+    <form action="/dashboard" method="post">
+        <div class="mb-3">
+            <!-- enter task -->
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="task" name="task" placeholder="Name of task" type="text" required>
+            <br></br>
+            <!-- rank task by urgency and importance, with urgency being how hard and soon the deadline is, and importance being the magnitude of the task's meaning to you-->
+            <div>
+                <label for="urgency">How urgent is this task to you?</label>
+                <select id="urgency" name="urgency" size="4" multiple required>
+                    <option value=0>Not Urgent</option>
+                    <option value=1>Kind of Urgent</option>
+                    <option value=2>Urgent</option>
+                    <option value=100>AHHHHH</option>
+                </select>
+                <br></br>
+                <label for="importance">How important is this task to you?</label>
+                <select id="importance" name="importance" size="4" multiple required>
+                    <option value=0>Not Important</option>
+                    <option value=1>Kind of Important</option>
+                    <option value=2>Important</option>
+                    <option value=100>I burn with passion</option>
+                </select>
+            </div>
+            <br></br>
+            <!-- Users input how many days left until the deadline—Future work involves time estimates to refine prioritization -->
+            <input id="time" name="time" autocomplete="off" autofocus class="form-control mx-auto w-auto" placeholder="Days until deadline" type="number" required>
+            <br></br>
+            <button class="btn btn-light" type="submit">Let's go!</button>
+        </div>
+    </form>
+    <div class="section">
+    <br></br>
+    <hr></hr>
+    <h3>Backlog and Editor</h3>
+    <form action="/dashboard" method="post">
+        <div>
+        <!-- Gives users a chance to manually delete tasks -->
+        <select id="delete" name="delete" type="select">
+            {% for record in records %}
+            <option> {{ record["task"] }} </option> 
+            {% endfor %}
+        </select>
+        <button class="btn btn-light" type="submit">delete task</button>
+        <br></br>
+        </div>
+    </form>
+        <!-- Creates table log of tasks -->
+        <table>
+            {% if a%}
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Priority</th>
+                    <th>Days Left</th>
+                    <th>Urgency</th>
+                    <th>Importance</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in records %}
+                <tr>
+                    <td> {{ record["task"] }}</td>
+                    <td> {{ record["priority"] }}</td>
+                    <td> {{ record["time"] }}</td>
+                    <td> {{ record["urgency"] }} </td>
+                    <td> {{ record["importance"] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            {% endif %}
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Rewards
+{% endblock %}
+
+{% block main %}
+<br></br>
+<h1>Motivation Station</h1>
+<form action="/rewards" method="post">
+    <div class="mb-3">
+        <!-- <p>(currently using fixed-ratio reinforcement)</p> -->
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="wish" name="wish" placeholder="Make a wish" type="text" required>
+        <!-- in the future, users should be able to rank their gifts in terms of cost, meaning, etc. <br></br>
+        <label for="importance">How important is this task to you?</label>
+        <select id="importance" name="importance" size="4" multiple required>
+            <option value=0>It would be nice</option>
+            <option value=1>Please</option>
+            <option value=2>Wou</option>
+        </select> -->
+        <br></br>
+        <button class="btn btn-light" type="submit">Choo choo!</button>
+    <div>
+</form>
+<hr></hr> 
+<h3>Wishing Well</h3>
+<form action="/rewards" method="post">
+    <div>
+    <select id="delete" name="delete" type="select">
+        <!-- Creates a table of wishes and deletes them once user has confirmed that they received a gift -->
+        {% for wish in wishlist %}
+        <option> {{ wish["wish"] }} </option> 
+        {% endfor %}
+    </select>
+    <button id="delete" name="delete" class="btn btn-light" type="submit">wish granted!</button>
+    <br></br>
+    <hr></hr>
+    <h3>Conquered tasks</h3>
+    <!-- creates log of completed (conquered) tasks -->
+    <table>
+        {% if a%}
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Time remaining (days)</th>
+                <th>Date completed</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+            <tr>
+                <td> {{ record["task"] }}</td>
+                <td> {{ record["time_remaining"] }}</td>
+                <td> {{ record["datetime"] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        {% endif %}
+    </table>
+    </div>
+{% endblock %}

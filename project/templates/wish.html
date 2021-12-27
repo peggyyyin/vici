@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Super Secret Wishing Well
+{% endblock %}
+
+{% block main %}
+<!-- was originally implemented as a super-secret wishing well for those why got certain numbers of tasks done, but decided it would
+be best to combine with previous page -->
+
+<br></br>
+<h1>Welcome to the Wishing Well!</h1>
+<p>You are granted one wish, after which you will be whisked back to the "real world"</p>
+<form action="/rewards" method="post">
+    <div>
+    <select id="delete" name="delete" type="select">
+        {% for wish in wishlist %}
+        <option> {{ wish["wish"] }} </option> 
+        {% endfor %}
+    </select>
+    <button id="delete" name="delete" class="btn btn-light" type="submit">wish granted!</button>
+    </div>
+{% endblock %}
