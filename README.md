@@ -7,6 +7,9 @@ This edition of Vici is the minimum viable product, and features the core of Vic
 ## Link to YouTube Video
 https://youtu.be/shszooZySAw
 
+## Programming languages used:
+Python, Flask, SQL, HTML/CSS 
+
 # User Manual
 Vici was constructed using VSCode. It may be run locally.
 
